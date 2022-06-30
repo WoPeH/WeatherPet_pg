@@ -1,15 +1,25 @@
 package com.company;
 import java.io.IOException;
-
+import java.lang.annotation.*;
 import org.json.*;
 
 class Main {
     public static void main(String[] args) throws IOException {
-
         WeatherAPI getResponseFromAPI = new WeatherAPI();
-//        getResponseFromAPI.getWeatherForecastResponse();
-        //getResponseFromAPI.getCurrentWeatherResponse(); - string
-        JSONObject currentMinskState = new JSONObject(getResponseFromAPI.getCurrentWeatherResponse());
-        System.out.println("Сейчас " + (currentMinskState.getJSONObject("main").getDouble("temp")-273.15) + " градусов тепла по Цельсию");
+        double temp;
+//        getResponseFromAPI.getWeatherForecastResponse(); - TBD Forecast
+//        getResponseFromAPI.getCurrentWeatherResponse(); - string
+        try{
+            JSONObject currentMinskState = new JSONObject(getResponseFromAPI.getCurrentWeatherResponse());
+            WeatherStateParser stateParser = new WeatherStateParser();
+            temp = stateParser.getCurrentTemp(currentMinskState);
+            System.out.println("Сейчас "+temp + " градусов по Цельсию");
+        }
+        catch (JSONException exception){
+            System.out.println("Invalid JSON");
+            System.exit(1);
+        }
+
+//        System.out.println("Сейчас " + (currentMinskState.getJSONObject("main").getDouble("temp")-273.15) + " градусов тепла по Цельсию");
     }
 }
