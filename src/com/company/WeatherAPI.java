@@ -12,6 +12,8 @@ final class WeatherAPI {
     final double longitudeMinsk = 27.567444;
     String forecastURLString = "https://api.openweathermap.org/data/2.5/forecast?lat=" + latitudeMinsk + "&lon=" + longitudeMinsk + "&appid=" + System.getenv("APIKey");
     String weatherURLString = "https://api.openweathermap.org/data/2.5/weather?lat=" + latitudeMinsk + "&lon=" + longitudeMinsk + "&appid=" + System.getenv("APIKey"); //trash "&dt="+ Long.toString(unixTime) +
+    String responseChecker;
+    StringBuffer responseBuffer = new StringBuffer();
 
     protected String getCurrentWeatherResponse() throws IOException {
        // long unixTime = System.currentTimeMillis() / 1000L;
@@ -22,8 +24,6 @@ final class WeatherAPI {
         int APIResponseStatus = connectionToWeatherAPI.getResponseCode();
         System.out.println("Response status " + APIResponseStatus);
         BufferedReader responseReader = new BufferedReader(new InputStreamReader(connectionToWeatherAPI.getInputStream()));
-        String responseChecker;
-        StringBuffer responseBuffer = new StringBuffer();
         while ((responseChecker = responseReader.readLine()) != null){
             responseBuffer.append(responseChecker);
         }
@@ -40,8 +40,6 @@ final class WeatherAPI {
         int APIResponseStatus =  connectionToForecastAPI.getResponseCode();
         System.out.println("Response status " + APIResponseStatus);
         BufferedReader responseReader = new BufferedReader(new InputStreamReader(connectionToForecastAPI.getInputStream()));
-        String responseChecker;
-        StringBuffer responseBuffer = new StringBuffer();
         while ((responseChecker = responseReader.readLine()) != null){
             responseBuffer.append(responseChecker);
         }
