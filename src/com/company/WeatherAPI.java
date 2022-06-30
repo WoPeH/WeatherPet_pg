@@ -6,25 +6,47 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+
 final class WeatherAPI {
-    protected String getCurrentTemperature(String APIKey) throws IOException {
+    final String APIKey = "fad6b233e633306f19594a521300981f";
+    final double latitudeMinsk = 53.893009;
+    final double longitudeMinsk = 27.567444;
+    String forecastURLString = "https://api.openweathermap.org/data/2.5/forecast?lat=" + latitudeMinsk + "&lon=" + longitudeMinsk + "&appid=" + APIKey;
+    String weatherURLString = "https://api.openweathermap.org/data/2.5/weather?lat=" + latitudeMinsk + "&lon=" + longitudeMinsk + "&appid=" + APIKey; //trash "&dt="+ Long.toString(unixTime) +
+
+    protected String getCurrentWeatherResponse() throws IOException {
        // long unixTime = System.currentTimeMillis() / 1000L;
-        final double latitudeMinsk = 53.893009;
-        final double longitudeMinsk = 27.567444;
-        String temperatureURL = "https://api.openweathermap.org/data/2.5/weather?lat=" + latitudeMinsk + "&lon=" + longitudeMinsk + "&appid=" + APIKey; //trash "&dt="+ Long.toString(unixTime) +
-        URL temperatureURI = new URL(temperatureURL);
-        HttpURLConnection connectionToAPI = (HttpURLConnection) temperatureURI.openConnection();
-        connectionToAPI.setConnectTimeout(5000);
-        connectionToAPI.setReadTimeout(10000);
-        int APIResponseStatus = connectionToAPI.getResponseCode();
+        URL weatherURI = new URL(weatherURLString);
+        HttpURLConnection connectionToWeatherAPI = (HttpURLConnection) weatherURI.openConnection();
+        connectionToWeatherAPI.setConnectTimeout(5000);
+        connectionToWeatherAPI.setReadTimeout(10000);
+        int APIResponseStatus = connectionToWeatherAPI.getResponseCode();
         System.out.println("Response status " + APIResponseStatus);
-        BufferedReader responseReader = new BufferedReader(new InputStreamReader(connectionToAPI.getInputStream()));
+        BufferedReader responseReader = new BufferedReader(new InputStreamReader(connectionToWeatherAPI.getInputStream()));
         String responseChecker;
         StringBuffer responseBuffer = new StringBuffer();
         while ((responseChecker = responseReader.readLine()) != null){
             responseBuffer.append(responseChecker);
         }
-        connectionToAPI.disconnect();
+        connectionToWeatherAPI.disconnect();
+        System.out.println(responseBuffer);
+        return responseBuffer.toString();
+    }
+
+    protected String getWeatherForecastResponse() throws IOException {
+        URL forecastURI = new URL(forecastURLString);
+        HttpURLConnection connectionToForecastAPI = (HttpURLConnection) forecastURI.openConnection();
+        connectionToForecastAPI.setConnectTimeout(5000);
+        connectionToForecastAPI.setReadTimeout(10000);
+        int APIResponseStatus =  connectionToForecastAPI.getResponseCode();
+        System.out.println("Response status " + APIResponseStatus);
+        BufferedReader responseReader = new BufferedReader(new InputStreamReader(connectionToForecastAPI.getInputStream()));
+        String responseChecker;
+        StringBuffer responseBuffer = new StringBuffer();
+        while ((responseChecker = responseReader.readLine()) != null){
+            responseBuffer.append(responseChecker);
+        }
+        connectionToForecastAPI.disconnect();
         System.out.println(responseBuffer);
         return responseBuffer.toString();
     }
