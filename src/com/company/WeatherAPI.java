@@ -8,11 +8,10 @@ import java.net.URL;
 
 
 final class WeatherAPI {
-    final String APIKey = "fad6b233e633306f19594a521300981f";
     final double latitudeMinsk = 53.893009;
     final double longitudeMinsk = 27.567444;
-    String forecastURLString = "https://api.openweathermap.org/data/2.5/forecast?lat=" + latitudeMinsk + "&lon=" + longitudeMinsk + "&appid=" + APIKey;
-    String weatherURLString = "https://api.openweathermap.org/data/2.5/weather?lat=" + latitudeMinsk + "&lon=" + longitudeMinsk + "&appid=" + APIKey; //trash "&dt="+ Long.toString(unixTime) +
+    String forecastURLString = "https://api.openweathermap.org/data/2.5/forecast?lat=" + latitudeMinsk + "&lon=" + longitudeMinsk + "&appid=" + System.getenv("APIKey");
+    String weatherURLString = "https://api.openweathermap.org/data/2.5/weather?lat=" + latitudeMinsk + "&lon=" + longitudeMinsk + "&appid=" + System.getenv("APIKey"); //trash "&dt="+ Long.toString(unixTime) +
 
     protected String getCurrentWeatherResponse() throws IOException {
        // long unixTime = System.currentTimeMillis() / 1000L;
