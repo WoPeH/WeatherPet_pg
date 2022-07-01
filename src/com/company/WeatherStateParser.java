@@ -7,4 +7,8 @@ public class WeatherStateParser {
     public double getCurrentTemp(JSONObject weatherResponse) throws JSONException {
         return weatherResponse.getJSONObject("main").getDouble("temp") - 273.15;
     }
+
+    public String getCurrentWeatherDescription(JSONObject weatherResponse) throws JSONException {
+        return WeatherDescriptionMapper.descriptionMapper(weatherResponse.getJSONArray("weather").getJSONObject(0).getInt("id"));
+    }
 }

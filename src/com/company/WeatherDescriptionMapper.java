@@ -1,11 +1,10 @@
 package com.company;
 
 import java.util.HashMap;
-import java.util.Map;
 
 //as there is no endpoint to get all this, got to hardcode
 public class WeatherDescriptionMapper {
-    protected static HashMap<Integer, String> descriptionMapper(){
+    protected static String descriptionMapper(int idOfWeather) {
         HashMap<Integer, String> weatherDescription = new HashMap<>();
         weatherDescription.put(200, "Гроза с небольшим дождем");
         weatherDescription.put(201, "Гроза с дождем");
@@ -67,6 +66,6 @@ public class WeatherDescriptionMapper {
         weatherDescription.put(802, "Рассеянные облака");
         weatherDescription.put(803, "Преимущественно облачно");
         weatherDescription.put(804, "Пасмурно");
-        return weatherDescription;
+        return weatherDescription.get(idOfWeather);
     }
 }

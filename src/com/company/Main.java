@@ -9,13 +9,16 @@ class Main {
     public static void main(String[] args) throws IOException {
         WeatherAPI getResponseFromAPI = new WeatherAPI();
         double temp;
+        String weatherDescription;
 //        getResponseFromAPI.getWeatherForecastResponse(); - TBD Forecast
 //        getResponseFromAPI.getCurrentWeatherResponse(); - string
         try {
-            JSONObject currentMinskState = new JSONObject(getResponseFromAPI.getCurrentWeatherResponse());
+            JSONObject currentMinskStateJSON = new JSONObject(getResponseFromAPI.getCurrentWeatherResponse());
             WeatherStateParser stateParser = new WeatherStateParser();
-            temp = stateParser.getCurrentTemp(currentMinskState);
+            temp = stateParser.getCurrentTemp(currentMinskStateJSON);
             System.out.println("Сейчас " + temp + " градусов по Цельсию");
+            weatherDescription = stateParser.getCurrentWeatherDescription(currentMinskStateJSON);
+            System.out.println("Погода сейчас:\n" + weatherDescription);
         } catch (JSONException exception) {
             System.out.println("Invalid JSON");
             System.exit(1);
