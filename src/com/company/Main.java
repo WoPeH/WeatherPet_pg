@@ -1,7 +1,9 @@
 package com.company;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.IOException;
-import java.lang.annotation.*;
-import org.json.*;
 
 class Main {
     public static void main(String[] args) throws IOException {
@@ -9,13 +11,12 @@ class Main {
         double temp;
 //        getResponseFromAPI.getWeatherForecastResponse(); - TBD Forecast
 //        getResponseFromAPI.getCurrentWeatherResponse(); - string
-        try{
+        try {
             JSONObject currentMinskState = new JSONObject(getResponseFromAPI.getCurrentWeatherResponse());
             WeatherStateParser stateParser = new WeatherStateParser();
             temp = stateParser.getCurrentTemp(currentMinskState);
-            System.out.println("Сейчас "+temp + " градусов по Цельсию");
-        }
-        catch (JSONException exception){
+            System.out.println("Сейчас " + temp + " градусов по Цельсию");
+        } catch (JSONException exception) {
             System.out.println("Invalid JSON");
             System.exit(1);
         }

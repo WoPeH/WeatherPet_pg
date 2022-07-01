@@ -16,7 +16,7 @@ final class WeatherAPI {
     StringBuffer responseBuffer = new StringBuffer();
 
     protected String getCurrentWeatherResponse() throws IOException {
-       // long unixTime = System.currentTimeMillis() / 1000L;
+        // long unixTime = System.currentTimeMillis() / 1000L;
         URL weatherURI = new URL(weatherURLString);
         HttpURLConnection connectionToWeatherAPI = (HttpURLConnection) weatherURI.openConnection();
         connectionToWeatherAPI.setConnectTimeout(5000);
@@ -24,7 +24,7 @@ final class WeatherAPI {
         int APIResponseStatus = connectionToWeatherAPI.getResponseCode();
         System.out.println("Response status " + APIResponseStatus);
         BufferedReader responseReader = new BufferedReader(new InputStreamReader(connectionToWeatherAPI.getInputStream()));
-        while ((responseChecker = responseReader.readLine()) != null){
+        while ((responseChecker = responseReader.readLine()) != null) {
             responseBuffer.append(responseChecker);
         }
         connectionToWeatherAPI.disconnect();
@@ -37,10 +37,10 @@ final class WeatherAPI {
         HttpURLConnection connectionToForecastAPI = (HttpURLConnection) forecastURI.openConnection();
         connectionToForecastAPI.setConnectTimeout(5000);
         connectionToForecastAPI.setReadTimeout(10000);
-        int APIResponseStatus =  connectionToForecastAPI.getResponseCode();
+        int APIResponseStatus = connectionToForecastAPI.getResponseCode();
         System.out.println("Response status " + APIResponseStatus);
         BufferedReader responseReader = new BufferedReader(new InputStreamReader(connectionToForecastAPI.getInputStream()));
-        while ((responseChecker = responseReader.readLine()) != null){
+        while ((responseChecker = responseReader.readLine()) != null) {
             responseBuffer.append(responseChecker);
         }
         connectionToForecastAPI.disconnect();
