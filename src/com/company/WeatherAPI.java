@@ -13,9 +13,9 @@ final class WeatherAPI {
     String forecastURLString = "https://api.openweathermap.org/data/2.5/forecast?lat=" + latitudeMinsk + "&lon=" + longitudeMinsk + "&appid=" + System.getenv("APIKey");
     String weatherURLString = "https://api.openweathermap.org/data/2.5/weather?lat=" + latitudeMinsk + "&lon=" + longitudeMinsk + "&appid=" + System.getenv("APIKey"); //trash "&dt="+ Long.toString(unixTime) +
     String responseChecker;
-    StringBuffer responseBuffer = new StringBuffer();
 
     protected String getCurrentWeatherResponse() throws IOException {
+        StringBuffer responseBuffer = new StringBuffer();
         // long unixTime = System.currentTimeMillis() / 1000L;
         URL weatherURI = new URL(weatherURLString);
         HttpURLConnection connectionToWeatherAPI = (HttpURLConnection) weatherURI.openConnection();
@@ -33,6 +33,7 @@ final class WeatherAPI {
     }
 
     protected String getWeatherForecastResponse() throws IOException {
+        StringBuffer responseBuffer = new StringBuffer();
         URL forecastURI = new URL(forecastURLString);
         HttpURLConnection connectionToForecastAPI = (HttpURLConnection) forecastURI.openConnection();
         connectionToForecastAPI.setConnectTimeout(5000);
