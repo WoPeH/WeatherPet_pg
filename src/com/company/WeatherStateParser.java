@@ -16,7 +16,7 @@ public class WeatherStateParser {
         return WeatherDescriptionMapper.descriptionMapper(weatherResponse.getJSONArray("weather").getJSONObject(0).getInt("id"));
     }
 
-    public int getCurrentHumidity(JSONObject weatherResponse) throws JSONException{
+    public int getCurrentHumidity(JSONObject weatherResponse) throws JSONException {
         return weatherResponse.getJSONObject("main").getInt("humidity");
     }
 }

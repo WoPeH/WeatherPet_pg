@@ -22,7 +22,7 @@ class Main {
             tempFeelsLike = stateParser.getCurrentFeelsLikeTemp(currentMinskStateJSON);
             System.out.println("Ощущается как " + Math.round(tempFeelsLike) + "° Цельсия");
             currentHumidity = stateParser.getCurrentHumidity(currentMinskStateJSON);
-            System.out.println("Влажность: " +currentHumidity + "%");
+            System.out.println("Влажность: " + currentHumidity + "%");
             weatherDescription = stateParser.getCurrentWeatherDescription(currentMinskStateJSON); //get weather description from JSON, map it to local naming
             System.out.println("\nПогода сейчас:\n" + weatherDescription); //output weather description
         } catch (JSONException exception) {
