@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="WeatherPet - pg:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/WeatherPet___pg_jar</output-path>
+    <root id="archive" name="WeatherPet - pg.jar">
+      <element id="module-output" name="WeatherPet - pg" />
+      <element id="extracted-dir" path="$USER_HOME$/Libs/org.json-chargebee-1.0.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
