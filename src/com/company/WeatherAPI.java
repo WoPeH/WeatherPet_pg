@@ -8,8 +8,10 @@ import java.net.URL;
 
 
 final class WeatherAPI {
+    //constants for geolocation as for now i dont want to retrieve it from anywhere
     final double latitudeMinsk = 53.893009;
     final double longitudeMinsk = 27.567444;
+    //two endpoints for making calls
     String forecastURLString = "https://api.openweathermap.org/data/2.5/forecast?lat=" + latitudeMinsk + "&lon=" + longitudeMinsk + "&appid=" + System.getenv("APIKey");
     String weatherURLString = "https://api.openweathermap.org/data/2.5/weather?lat=" + latitudeMinsk + "&lon=" + longitudeMinsk + "&appid=" + System.getenv("APIKey"); //trash "&dt="+ Long.toString(unixTime) +
     String responseChecker;

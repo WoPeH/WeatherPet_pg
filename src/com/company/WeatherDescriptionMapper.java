@@ -3,8 +3,9 @@ package com.company;
 import java.util.HashMap;
 
 //as there is no endpoint to get all this, got to hardcode
+//I'm actually not sure if I can hardcode it so that map is not filled with each function call, gotta think on it. r
 public class WeatherDescriptionMapper {
-    protected static String descriptionMapper(int idOfWeather) {
+    protected static String descriptionMapper(int idOfWeather) { //returns string description based on id
         HashMap<Integer, String> weatherDescription = new HashMap<>();
         weatherDescription.put(200, "Гроза с небольшим дождем");
         weatherDescription.put(201, "Гроза с дождем");
